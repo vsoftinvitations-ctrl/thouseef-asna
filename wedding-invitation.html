@@ -679,38 +679,49 @@
 
     .married-card {
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 1.18fr 1fr;
       background: #ffffff;
       border-radius: 14px;
       overflow: hidden;
       box-shadow: 0 20px 50px rgba(0, 0, 0, 0.08), 0 4px 16px rgba(0, 0, 0, 0.03);
       border: 1px solid rgba(220, 190, 140, 0.25);
       margin: 0 auto clamp(28px, 5vh, 44px);
-      max-width: 860px;
-      min-height: 420px;
+      max-width: 940px;
+      min-height: 440px;
       transition: transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.8s ease;
     }
 
-    .married-photo {
+    .married-photos {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3px;
+      background: #eee6db;
+      width: 100%;
+      height: 100%;
+      min-height: 420px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .married-photo-item {
       position: relative;
       width: 100%;
       height: 100%;
-      min-height: 380px;
       overflow: hidden;
       background: #f4ede3;
     }
 
-    .married-photo img {
+    .married-photo-item img {
       display: block;
       width: 100%;
       height: 100%;
       object-fit: cover;
-      object-position: 50% 20%;
-      transition: transform 1.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+      object-position: center 20%;
+      transition: transform 1s cubic-bezier(0.2, 0.8, 0.2, 1), filter 0.6s ease;
     }
 
-    .married-card:hover .married-photo img {
-      transform: scale(1.03);
+    .married-photo-item:hover img {
+      transform: scale(1.06);
     }
 
     .married-details {
@@ -762,9 +773,9 @@
         min-height: auto;
       }
 
-      .married-photo {
-        min-height: auto;
-        aspect-ratio: 4/3;
+      .married-photos {
+        min-height: 290px;
+        height: 300px;
       }
 
       .married-details {
@@ -1179,10 +1190,15 @@
 </section>
 
 <section class="married-section">
-  <div class="wrap" style="max-width:920px">
+  <div class="wrap" style="max-width:960px">
     <div class="married-card r">
-      <div class="married-photo">
-        <img src="${PHOTOS.a}" alt="${W.brideFull} & ${W.groomFull}" decoding="async">
+      <div class="married-photos">
+        <div class="married-photo-item">
+          <img src="/couple.jpg" alt="${W.brideFull} & ${W.groomFull} — Wedding Attire" decoding="async" loading="lazy">
+        </div>
+        <div class="married-photo-item">
+          <img src="/image.png" alt="${W.brideFull} & ${W.groomFull} — Casual Portrait" decoding="async" loading="lazy">
+        </div>
       </div>
       <div class="married-details">
         <p class="married-label">ARE GETTING MARRIED</p>
