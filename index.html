@@ -1142,7 +1142,43 @@
   </div>
 </section>
 
-<section id="intro" class="married-section">
+<section id="intro">
+  <div class="cover r"><img src="${PHOTOS.a}" alt="${W.short}" decoding="async"></div>
+  <div class="wrap">
+    <p class="label r">Together with their families</p>
+    <h2 class="intro-names r" aria-label="${W.groomFull} & ${W.brideFull}">
+      <div class="script-line script-groom">
+        <span class="script-text">${W.groom}</span>
+        <span class="calligraphy-spark" aria-hidden="true"></span>
+      </div>
+      <div class="script-line script-amp" aria-hidden="true">
+        <span class="amp">&amp;</span>
+      </div>
+      <div class="script-line script-bride">
+        <span class="script-text">${W.bride}</span>
+        <span class="calligraphy-spark" aria-hidden="true"></span>
+      </div>
+      <div class="flourish-wrap" aria-hidden="true">
+        <svg class="calligraphy-flourish" viewBox="0 0 280 26" fill="none" preserveAspectRatio="none">
+          <path class="flourish-path" d="M14,14 C65,4 105,6 140,16 C175,24 215,10 266,8" stroke="url(#goldFlourishGrad)" stroke-width="2.2" stroke-linecap="round" />
+          <defs>
+            <linearGradient id="goldFlourishGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="rgba(220, 201, 160, 0.2)" />
+              <stop offset="35%" stop-color="rgba(184, 152, 90, 0.95)" />
+              <stop offset="70%" stop-color="rgba(218, 165, 32, 0.95)" />
+              <stop offset="100%" stop-color="rgba(220, 201, 160, 0.2)" />
+            </linearGradient>
+          </defs>
+        </svg>
+      </div>
+    </h2>
+    <p class="small r" style="letter-spacing:.2em;text-transform:uppercase;margin:8px 0 16px;color:var(--gold,#b8985a);font-size:0.9rem">${W.groomFull} &amp; ${W.brideFull}</p>
+    ${orn}
+    <p class="quote r">“${W.quotes[0]}”</p>
+  </div>
+</section>
+
+<section class="married-section">
   <div class="wrap" style="max-width:920px">
     <div class="married-card r">
       <div class="married-photo">
@@ -1155,8 +1191,6 @@
         <h2 class="married-name">${W.groomFull}</h2>
       </div>
     </div>
-    ${orn}
-    <p class="quote r">“${W.quotes[0]}”</p>
   </div>
 </section>
 
