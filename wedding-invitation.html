@@ -1062,6 +1062,10 @@
 
 <body>
   <audio id="wedding-audio" loop preload="auto">
+    <source src="/music/song.mp3" type="audio/mpeg">
+    <source src="music/song.mp3" type="audio/mpeg">
+    <source src="/music/Asalayavale.mp3" type="audio/mpeg">
+    <source src="music/Asalayavale.mp3" type="audio/mpeg">
     <source src="/music/Asalayavale%20song%20on%20flute%20instrumental%20khalifa%20movie%20ashique_flt%20jakes%20bejoy%20%23trending%20%23fyp.mp3" type="audio/mpeg">
     <source src="music/Asalayavale%20song%20on%20flute%20instrumental%20khalifa%20movie%20ashique_flt%20jakes%20bejoy%20%23trending%20%23fyp.mp3" type="audio/mpeg">
   </audio>
@@ -1364,11 +1368,11 @@ ${W.compliments && W.compliments.length ? `
 
     /* ===== Background Music Playback ===== */
     const audio = document.getElementById('wedding-audio');
-    if (audio) audio.volume = 0.65;
+    if (audio) audio.volume = 0.95;
 
     function playAudio() {
       if (!audio) return;
-      audio.volume = 0.65;
+      audio.volume = 0.95;
       const playPromise = audio.play();
       if (playPromise !== undefined) {
         playPromise.catch(err => {
