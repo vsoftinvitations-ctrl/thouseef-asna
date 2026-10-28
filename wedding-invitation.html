@@ -731,38 +731,6 @@
       object-position: center 20%;
     }
 
-    .slider-dots {
-      position: absolute;
-      bottom: 16px;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      padding: 6px 14px;
-      background: rgba(18, 14, 11, 0.52);
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
-      border-radius: 999px;
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      z-index: 5;
-    }
-
-    .slider-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: rgba(255, 255, 255, 0.45);
-      cursor: pointer;
-      transition: all 0.35s ease;
-    }
-
-    .slider-dot.active {
-      width: 22px;
-      border-radius: 999px;
-      background: #dfc28d;
-    }
-
     .married-details {
       background: #ffffff;
       padding: clamp(36px, 6vw, 64px) clamp(24px, 4vw, 48px);
@@ -1238,11 +1206,6 @@
         <div class="married-slide">
           <img src="/image.png" alt="${W.brideFull} & ${W.groomFull} — Casual Moments" decoding="async">
         </div>
-
-        <div class="slider-dots">
-          <span class="slider-dot active" data-slide="0" aria-label="Photo 1"></span>
-          <span class="slider-dot" data-slide="1" aria-label="Photo 2"></span>
-        </div>
       </div>
 
       <div class="married-details">
@@ -1370,14 +1333,12 @@ ${W.compliments && W.compliments.length ? `
       const slider = document.getElementById('marriedSlider');
       if (!slider) return;
       const slides = slider.querySelectorAll('.married-slide');
-      const dots = slider.querySelectorAll('.slider-dot');
       let currentIdx = 0;
       let timer = null;
 
       function goTo(newIdx) {
         if (newIdx === currentIdx || newIdx < 0 || newIdx >= slides.length) return;
         slides.forEach((s, i) => s.classList.toggle('active', i === newIdx));
-        dots.forEach((d, i) => d.classList.toggle('active', i === newIdx));
         currentIdx = newIdx;
       }
 
@@ -1394,14 +1355,6 @@ ${W.compliments && W.compliments.length ? `
       function stopAuto() {
         if (timer) clearInterval(timer);
       }
-
-      dots.forEach((dot, idx) => {
-        dot.addEventListener('click', (e) => {
-          e.stopPropagation();
-          goTo(idx);
-          startAuto();
-        });
-      });
 
       slider.addEventListener('click', () => {
         next();
