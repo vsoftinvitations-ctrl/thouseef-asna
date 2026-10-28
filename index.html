@@ -679,49 +679,187 @@
 
     .married-card {
       display: grid;
-      grid-template-columns: 1.18fr 1fr;
+      grid-template-columns: 1fr 1fr;
       background: #ffffff;
       border-radius: 14px;
       overflow: hidden;
-      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.08), 0 4px 16px rgba(0, 0, 0, 0.03);
-      border: 1px solid rgba(220, 190, 140, 0.25);
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.09), 0 4px 18px rgba(0, 0, 0, 0.03);
+      border: 1px solid rgba(220, 190, 140, 0.28);
       margin: 0 auto clamp(28px, 5vh, 44px);
-      max-width: 940px;
+      max-width: 890px;
       min-height: 440px;
       transition: transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.8s ease;
     }
 
-    .married-photos {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 3px;
-      background: #eee6db;
+    /* Album Page-Turn Showcase */
+    .married-album {
+      position: relative;
       width: 100%;
       height: 100%;
       min-height: 420px;
-      position: relative;
       overflow: hidden;
+      background: #181411;
+      perspective: 1400px;
+      cursor: pointer;
+      user-select: none;
     }
 
-    .married-photo-item {
-      position: relative;
+    /* Embossed book spine */
+    .album-spine {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      width: 16px;
+      background: linear-gradient(
+        to right,
+        rgba(0, 0, 0, 0.45) 0%,
+        rgba(0, 0, 0, 0.15) 40%,
+        rgba(255, 255, 255, 0.12) 65%,
+        transparent 100%
+      );
+      z-index: 6;
+      pointer-events: none;
+    }
+
+    /* Album page slide */
+    .album-slide {
+      position: absolute;
+      inset: 0;
       width: 100%;
       height: 100%;
+      opacity: 0;
+      visibility: hidden;
+      transform: rotateY(20deg) scale(0.97);
+      transform-origin: left center;
+      transition: 
+        transform 1s cubic-bezier(0.25, 1, 0.5, 1),
+        opacity 0.85s ease,
+        visibility 1s;
+      z-index: 1;
       overflow: hidden;
-      background: #f4ede3;
     }
 
-    .married-photo-item img {
+    .album-slide.active {
+      opacity: 1;
+      visibility: visible;
+      transform: rotateY(0deg) scale(1);
+      z-index: 3;
+    }
+
+    .album-slide.turning-out {
+      opacity: 0;
+      visibility: hidden;
+      transform: rotateY(-65deg) scale(0.93);
+      z-index: 2;
+    }
+
+    .album-slide img {
       display: block;
       width: 100%;
       height: 100%;
       object-fit: cover;
       object-position: center 20%;
-      transition: transform 1s cubic-bezier(0.2, 0.8, 0.2, 1), filter 0.6s ease;
+      transition: transform 1.2s ease;
     }
 
-    .married-photo-item:hover img {
-      transform: scale(1.06);
+    .married-album:hover .album-slide.active img {
+      transform: scale(1.03);
+    }
+
+    /* Glossy photo leaf lighting gradient */
+    .album-gloss {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0.12) 0%,
+        transparent 40%,
+        rgba(0, 0, 0, 0.15) 75%,
+        rgba(0, 0, 0, 0.4) 100%
+      );
+      pointer-events: none;
+    }
+
+    /* Album tag badge */
+    .album-tag {
+      position: absolute;
+      top: 18px;
+      left: 24px;
+      font-family: var(--sans);
+      font-size: 0.68rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: #dfc28d;
+      background: rgba(18, 14, 11, 0.7);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      padding: 5px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(223, 194, 141, 0.35);
+      z-index: 4;
+      pointer-events: none;
+    }
+
+    /* Floating album controls */
+    .album-controls {
+      position: absolute;
+      bottom: 16px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(18, 14, 11, 0.78);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(223, 194, 141, 0.3);
+      padding: 5px 12px;
+      border-radius: 999px;
+      z-index: 7;
+      box-shadow: 0 4px 18px rgba(0, 0, 0, 0.35);
+    }
+
+    .album-arrow {
+      background: none;
+      border: none;
+      color: #dfc28d;
+      width: 22px;
+      height: 22px;
+      display: grid;
+      place-items: center;
+      cursor: pointer;
+      border-radius: 50%;
+      padding: 0;
+      transition: background 0.2s ease, transform 0.2s ease;
+    }
+
+    .album-arrow:hover {
+      background: rgba(223, 194, 141, 0.25);
+      transform: scale(1.15);
+    }
+
+    .album-indicators {
+      display: flex;
+      gap: 6px;
+    }
+
+    .album-pill {
+      font-family: var(--sans);
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.65);
+      padding: 2px 9px;
+      border-radius: 999px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .album-pill.active {
+      background: #dfc28d;
+      color: #1a140d;
+      font-weight: 600;
     }
 
     .married-details {
@@ -773,9 +911,9 @@
         min-height: auto;
       }
 
-      .married-photos {
-        min-height: 290px;
-        height: 300px;
+      .married-album {
+        min-height: 360px;
+        height: 380px;
       }
 
       .married-details {
@@ -1190,16 +1328,37 @@
 </section>
 
 <section class="married-section">
-  <div class="wrap" style="max-width:960px">
+  <div class="wrap" style="max-width:920px">
     <div class="married-card r">
-      <div class="married-photos">
-        <div class="married-photo-item">
-          <img src="/couple.jpg" alt="${W.brideFull} & ${W.groomFull} — Wedding Attire" decoding="async" loading="lazy">
+      <div class="married-album" id="marriedAlbum" role="region" aria-label="Photo Album" title="Click to turn page">
+        <div class="album-spine"></div>
+
+        <div class="album-slide slide-1 active">
+          <img src="/couple.jpg" alt="${W.brideFull} & ${W.groomFull} — Wedding Attire" decoding="async">
+          <div class="album-gloss"></div>
+          <div class="album-tag">Wedding Attire</div>
         </div>
-        <div class="married-photo-item">
-          <img src="/image.png" alt="${W.brideFull} & ${W.groomFull} — Casual Portrait" decoding="async" loading="lazy">
+
+        <div class="album-slide slide-2">
+          <img src="/image.png" alt="${W.brideFull} & ${W.groomFull} — Casual Portrait" decoding="async">
+          <div class="album-gloss"></div>
+          <div class="album-tag">Casual Moments</div>
+        </div>
+
+        <div class="album-controls">
+          <button type="button" class="album-arrow prev-page" aria-label="Previous Page">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 18l-6-6 6-6"/></svg>
+          </button>
+          <div class="album-indicators">
+            <span class="album-pill active" data-slide="0">Page 1</span>
+            <span class="album-pill" data-slide="1">Page 2</span>
+          </div>
+          <button type="button" class="album-arrow next-page" aria-label="Next Page">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 18l6-6-6-6"/></svg>
+          </button>
         </div>
       </div>
+
       <div class="married-details">
         <p class="married-label">ARE GETTING MARRIED</p>
         <h2 class="married-name">${W.brideFull}</h2>
@@ -1319,6 +1478,74 @@ ${W.compliments && W.compliments.length ? `
       }, 450);
     }
     document.querySelector('#hero .btn').addEventListener('click', e => { e.preventDefault(); openInvite() });
+
+        /* ===== Wedding Album Page Turn ===== */
+    function initAlbum() {
+      const album = document.getElementById('marriedAlbum');
+      if (!album) return;
+      const slides = album.querySelectorAll('.album-slide');
+      const pills = album.querySelectorAll('.album-pill');
+      const prevBtn = album.querySelector('.prev-page');
+      const nextBtn = album.querySelector('.next-page');
+      let currentIdx = 0;
+      let timer = null;
+
+      function goTo(newIdx) {
+        if (newIdx === currentIdx || newIdx < 0 || newIdx >= slides.length) return;
+        const currentSlide = slides[currentIdx];
+        const nextSlide = slides[newIdx];
+
+        slides.forEach(s => s.classList.remove('active', 'turning-out'));
+        pills.forEach((p, i) => p.classList.toggle('active', i === newIdx));
+
+        currentSlide.classList.add('turning-out');
+        nextSlide.classList.add('active');
+
+        currentIdx = newIdx;
+      }
+
+      function next() {
+        const nextIdx = (currentIdx + 1) % slides.length;
+        goTo(nextIdx);
+      }
+
+      function prev() {
+        const prevIdx = (currentIdx - 1 + slides.length) % slides.length;
+        goTo(prevIdx);
+      }
+
+      function startAuto() {
+        stopAuto();
+        timer = setInterval(next, 4200);
+      }
+
+      function stopAuto() {
+        if (timer) clearInterval(timer);
+      }
+
+      if (nextBtn) nextBtn.addEventListener('click', (e) => { e.stopPropagation(); next(); startAuto(); });
+      if (prevBtn) prevBtn.addEventListener('click', (e) => { e.stopPropagation(); prev(); startAuto(); });
+
+      pills.forEach((pill, idx) => {
+        pill.addEventListener('click', (e) => {
+          e.stopPropagation();
+          goTo(idx);
+          startAuto();
+        });
+      });
+
+      album.addEventListener('click', (e) => {
+        if (e.target.closest('.album-controls')) return;
+        next();
+        startAuto();
+      });
+
+      album.addEventListener('mouseenter', stopAuto);
+      album.addEventListener('mouseleave', startAuto);
+
+      startAuto();
+    }
+    initAlbum();
 
     /* ===== Background Music Playback ===== */
     const audio = document.getElementById('wedding-audio');
