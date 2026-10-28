@@ -670,6 +670,108 @@
 
     /* hero styles unified above */
 
+        /* Married Card Section (Matching reference design) */
+    .married-section {
+      padding: clamp(60px, 9vh, 110px) 20px;
+      background: radial-gradient(circle at 50% 50%, #fffdfa 0%, var(--ivory) 100%);
+      position: relative;
+    }
+
+    .married-card {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      background: #ffffff;
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.08), 0 4px 16px rgba(0, 0, 0, 0.03);
+      border: 1px solid rgba(220, 190, 140, 0.25);
+      margin: 0 auto clamp(28px, 5vh, 44px);
+      max-width: 860px;
+      min-height: 420px;
+      transition: transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.8s ease;
+    }
+
+    .married-photo {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      min-height: 380px;
+      overflow: hidden;
+      background: #f4ede3;
+    }
+
+    .married-photo img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: 50% 20%;
+      transition: transform 1.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+
+    .married-card:hover .married-photo img {
+      transform: scale(1.03);
+    }
+
+    .married-details {
+      background: #ffffff;
+      padding: clamp(36px, 6vw, 64px) clamp(24px, 4vw, 48px);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+
+    .married-label {
+      font-family: var(--sans);
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      color: #b8985a;
+      margin-bottom: clamp(16px, 3vh, 26px);
+    }
+
+    .married-name {
+      font-family: 'Cormorant Garamond', Didot, 'Playfair Display', serif;
+      font-size: clamp(2.1rem, 4.4vw, 3rem);
+      font-weight: 400;
+      line-height: 1.15;
+      color: #24201e;
+      letter-spacing: 0.02em;
+      margin: 0;
+      text-transform: capitalize;
+    }
+
+    .married-amp {
+      font-family: 'Cormorant Garamond', Didot, serif;
+      font-style: italic;
+      font-weight: 300;
+      font-size: clamp(1.8rem, 3.4vw, 2.4rem);
+      color: #c49a53;
+      line-height: 1;
+      margin: 6px 0 8px;
+      display: block;
+    }
+
+    @media (max-width: 680px) {
+      .married-card {
+        grid-template-columns: 1fr;
+        max-width: 440px;
+        min-height: auto;
+      }
+
+      .married-photo {
+        min-height: auto;
+        aspect-ratio: 4/3;
+      }
+
+      .married-details {
+        padding: 34px 24px 38px;
+      }
+    }
+
     /* cover */
     #intro {
       padding-top: 0;
@@ -1040,37 +1142,19 @@
   </div>
 </section>
 
-<section id="intro">
-  <div class="cover r"><img src="${PHOTOS.a}" alt="${W.short}" decoding="async"></div>
-  <div class="wrap">
-    <p class="label r">Together with their families</p>
-    <h2 class="intro-names r" aria-label="${W.groomFull} & ${W.brideFull}">
-      <div class="script-line script-groom">
-        <span class="script-text">${W.groom}</span>
-        <span class="calligraphy-spark" aria-hidden="true"></span>
+<section id="intro" class="married-section">
+  <div class="wrap" style="max-width:920px">
+    <div class="married-card r">
+      <div class="married-photo">
+        <img src="${PHOTOS.a}" alt="${W.brideFull} & ${W.groomFull}" decoding="async">
       </div>
-      <div class="script-line script-amp" aria-hidden="true">
-        <span class="amp">&amp;</span>
+      <div class="married-details">
+        <p class="married-label">ARE GETTING MARRIED</p>
+        <h2 class="married-name">${W.brideFull}</h2>
+        <span class="married-amp">&amp;</span>
+        <h2 class="married-name">${W.groomFull}</h2>
       </div>
-      <div class="script-line script-bride">
-        <span class="script-text">${W.bride}</span>
-        <span class="calligraphy-spark" aria-hidden="true"></span>
-      </div>
-      <div class="flourish-wrap" aria-hidden="true">
-        <svg class="calligraphy-flourish" viewBox="0 0 280 26" fill="none" preserveAspectRatio="none">
-          <path class="flourish-path" d="M14,14 C65,4 105,6 140,16 C175,24 215,10 266,8" stroke="url(#goldFlourishGrad)" stroke-width="2.2" stroke-linecap="round" />
-          <defs>
-            <linearGradient id="goldFlourishGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%" stop-color="rgba(220, 201, 160, 0.2)" />
-              <stop offset="35%" stop-color="rgba(184, 152, 90, 0.95)" />
-              <stop offset="70%" stop-color="rgba(218, 165, 32, 0.95)" />
-              <stop offset="100%" stop-color="rgba(220, 201, 160, 0.2)" />
-            </linearGradient>
-          </defs>
-        </svg>
-      </div>
-    </h2>
-    <p class="small r" style="letter-spacing:.2em;text-transform:uppercase;margin:8px 0 16px;color:var(--gold,#b8985a);font-size:0.9rem">${W.groomFull} &amp; ${W.brideFull}</p>
+    </div>
     ${orn}
     <p class="quote r">“${W.quotes[0]}”</p>
   </div>
