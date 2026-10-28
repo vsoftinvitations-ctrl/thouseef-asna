@@ -975,6 +975,57 @@
       margin-top: 8px
     }
 
+    /* Countdown Timer */
+    .countdown-wrap {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: clamp(8px, 2.5vw, 18px);
+      margin: clamp(26px, 4.5vh, 38px) auto 0;
+      max-width: 440px;
+      padding: clamp(14px, 2.5vh, 20px) clamp(16px, 4vw, 28px);
+      background: rgba(255, 255, 255, 0.78);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-radius: 16px;
+      border: 1px solid rgba(220, 194, 141, 0.38);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+    }
+
+    .countdown-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-width: clamp(48px, 11vw, 64px);
+    }
+
+    .countdown-num {
+      font-family: 'Cormorant Garamond', Didot, 'Playfair Display', serif;
+      font-size: clamp(1.9rem, 5.5vw, 2.6rem);
+      font-weight: 400;
+      color: #24201e;
+      line-height: 1;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .countdown-unit {
+      font-family: var(--sans);
+      font-size: 0.62rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: #b8985a;
+      margin-top: 6px;
+      font-weight: 500;
+    }
+
+    .countdown-sep {
+      font-family: 'Cormorant Garamond', Didot, serif;
+      font-size: clamp(1.5rem, 3.8vw, 2rem);
+      color: #dfc28d;
+      margin-top: -12px;
+      font-weight: 300;
+    }
+
     .pin {
       width: 22px;
       height: 22px;
@@ -1247,6 +1298,28 @@
   <div class="rule line-x r"></div>
   <div class="time r">${W.time}</div>
   ${D.malayalam ? `<div class="small r" style="margin-top:6px">${D.malayalam}</div>` : ''}
+
+  <div class="countdown-wrap r" id="weddingCountdown" role="timer" aria-label="Wedding Countdown">
+    <div class="countdown-item">
+      <span class="countdown-num" id="cd-days">00</span>
+      <span class="countdown-unit">Days</span>
+    </div>
+    <div class="countdown-sep">:</div>
+    <div class="countdown-item">
+      <span class="countdown-num" id="cd-hours">00</span>
+      <span class="countdown-unit">Hours</span>
+    </div>
+    <div class="countdown-sep">:</div>
+    <div class="countdown-item">
+      <span class="countdown-num" id="cd-minutes">00</span>
+      <span class="countdown-unit">Mins</span>
+    </div>
+    <div class="countdown-sep">:</div>
+    <div class="countdown-item">
+      <span class="countdown-num" id="cd-seconds">00</span>
+      <span class="countdown-unit">Secs</span>
+    </div>
+  </div>
 </div></section>
 
 <section><div class="wrap">
@@ -1388,6 +1461,35 @@ ${W.compliments && W.compliments.length ? `
       startAuto();
     }
     initSlider();
+
+    /* ===== Wedding Countdown Timer ===== */
+    function initCountdown() {
+      const target = new Date('2026-11-19T17:00:00+05:30').getTime();
+      const elDays = document.getElementById('cd-days');
+      const elHours = document.getElementById('cd-hours');
+      const elMins = document.getElementById('cd-minutes');
+      const elSecs = document.getElementById('cd-seconds');
+      if (!elDays || !elHours || !elMins || !elSecs) return;
+
+      function update() {
+        const now = Date.now();
+        const diff = Math.max(0, target - now);
+
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const mins = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+        const secs = Math.floor((diff % (1000 * 60)) / 1000);
+
+        elDays.textContent = String(days).padStart(2, '0');
+        elHours.textContent = String(hours).padStart(2, '0');
+        elMins.textContent = String(mins).padStart(2, '0');
+        elSecs.textContent = String(secs).padStart(2, '0');
+      }
+
+      update();
+      setInterval(update, 1000);
+    }
+    initCountdown();
 
     /* ===== Background Music Playback ===== */
     const audio = document.getElementById('wedding-audio');
