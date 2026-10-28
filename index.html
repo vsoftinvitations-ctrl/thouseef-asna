@@ -1080,10 +1080,10 @@
   <script>
         /* ===== Central wedding data — edit here only ===== */
     const W = {
-      bride: "Asna",
       groom: "Thouseef",
-      brideFirst: "Asna",
+      bride: "Asna",
       groomFirst: "Thouseef",
+      brideFirst: "Asna",
       groomFull: "Thouseef Roshan",
       brideFull: "Asna Parveen",
       monogram: "",
@@ -1115,13 +1115,13 @@
       invite: "We cordially invite your gracious presence and blessings on the auspicious occasion of the wedding ceremony of Thouseef & Asna.",
       families: [
         {
-          title: "Bride's Parents",
-          names: "Zainudheen & Asmabi",
+          title: "Groom's Parents",
+          names: "Kamarudheen & Jameela",
           lines: []
         },
         {
-          title: "Groom's Parents",
-          names: "Kamarudheen & Jameela",
+          title: "Bride's Parents",
+          names: "Zainudheen & Asmabi",
           lines: []
         }
       ],
@@ -1201,18 +1201,18 @@
     <div class="married-card r">
       <div class="married-slider" id="marriedSlider" role="region" aria-label="Couple Photos" title="Click to view next photo">
         <div class="married-slide active">
-          <img src="/couple.jpg" alt="${W.brideFull} & ${W.groomFull} — Wedding Attire" decoding="async">
+          <img src="/couple.jpg" alt="${W.groomFull} & ${W.brideFull} — Wedding Attire" decoding="async">
         </div>
         <div class="married-slide">
-          <img src="/image.png" alt="${W.brideFull} & ${W.groomFull} — Casual Moments" decoding="async">
+          <img src="/image.png" alt="${W.groomFull} & ${W.brideFull} — Casual Moments" decoding="async">
         </div>
       </div>
 
       <div class="married-details">
         <p class="married-label">ARE GETTING MARRIED</p>
-        <h2 class="married-name">${W.brideFull}</h2>
-        <span class="married-amp">&amp;</span>
         <h2 class="married-name">${W.groomFull}</h2>
+        <span class="married-amp">&amp;</span>
+        <h2 class="married-name">${W.brideFull}</h2>
       </div>
     </div>
   </div>
