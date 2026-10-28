@@ -1368,9 +1368,11 @@ ${W.compliments && W.compliments.length ? `
 
     /* ===== Background Music Playback ===== */
     const audio = document.getElementById('wedding-audio');
+    if (audio) audio.volume = 0.65;
 
     function playAudio() {
       if (!audio) return;
+      audio.volume = 0.65;
       const playPromise = audio.play();
       if (playPromise !== undefined) {
         playPromise.catch(err => {
