@@ -1207,7 +1207,9 @@
     const PHOTOS = {
       a: "/couple.jpg",
       b: "/couple.jpg",
-      casual: "/image.png"
+      casual: "/image.png",
+      gallery1: "/IMG_7534.jpg",
+      gallery2: "/IMG_7540.jpg"
     };
 
     /* ===== Render ===== */
@@ -1371,11 +1373,11 @@
 <section><div class="wrap" style="max-width:640px">
   <div class="gal" style="grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 18px;">
     <div class="ph ga r" style="aspect-ratio:2/3;border-radius:14px;overflow:hidden;box-shadow:0 14px 34px rgba(0,0,0,0.12)">
-      <img src="${PHOTOS.a}" alt="${W.groomFull} &amp; ${W.brideFull} — Wedding Attire" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;object-position:center 20%">
+      <img src="${PHOTOS.gallery1}" alt="${W.groomFull} &amp; ${W.brideFull}" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;object-position:center 20%">
     </div>
-    ${PHOTOS.casual ? `
+    ${PHOTOS.gallery2 ? `
     <div class="ph gb r" style="aspect-ratio:2/3;border-radius:14px;overflow:hidden;box-shadow:0 14px 34px rgba(0,0,0,0.12)">
-      <img src="${PHOTOS.casual}" alt="${W.groomFull} &amp; ${W.brideFull}" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;object-position:center 20%">
+      <img src="${PHOTOS.gallery2}" alt="${W.groomFull} &amp; ${W.brideFull}" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;object-position:center 20%">
     </div>` : ''}
   </div>
 </div></section>
